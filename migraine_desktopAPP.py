@@ -86,7 +86,30 @@ def create_fields():
 
 create_fields()
 
-# Predict function
+# Function to show prediction result
+def show_result_window(prediction, explanation):
+    result_window = CTkToplevel(app)
+    result_window.geometry("450x300")
+    result_window.title("Your Migraine Type")
+
+    result_window.configure(fg_color="#E8F6EF")  # Soft greenish-blue background
+
+    CTkLabel(result_window, text="🎉 Thank you for checking!", font=("Arial", 20, "bold"), text_color="#006466").pack(pady=10)
+    
+    CTkLabel(result_window, text="🧠 Migraine Type:", font=("Arial", 16, "bold"), text_color="#003049").pack(pady=5)
+    
+    CTkLabel(result_window, text=prediction, font=("Arial", 18), text_color="#780000").pack(pady=5)
+    
+    CTkLabel(result_window, text="📝 What this means:", font=("Arial", 14, "bold"), text_color="#003049").pack(pady=(10, 2))
+    
+    CTkLabel(result_window, text=explanation, wraplength=400, justify="left",
+             font=("Arial", 12), text_color="#343a40").pack(padx=10, pady=5)
+
+    CTkButton(result_window, text="🌈 Got it!", command=result_window.destroy,
+              fg_color="#90e0ef", hover_color="#00b4d8", text_color="#03045e",
+              corner_radius=10).pack(pady=15)
+
+# Updated predict function 
 def predict():
     try:
         data = []
@@ -106,7 +129,9 @@ def predict():
         prediction = model.predict(np.array(data).reshape(1, -1))[0]
         explain = explanations.get(prediction, "Unknown type. Please consult a doctor.")
 
-        messagebox.showinfo("Result", f"🧠 Migraine Type: {prediction}\n\nℹ️ Meaning: {explain}")
+        # Use custom popup window instead of messagebox
+        show_result_window(prediction, explain)
+
     except Exception as e:
         messagebox.showerror("Input Error", f"⚠️ {e}")
 
