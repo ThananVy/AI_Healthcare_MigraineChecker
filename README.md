@@ -24,7 +24,7 @@ A smart and user-friendly desktop application that helps patients understand the
 
 | Input Form | Prediction Result |
 |------------|-------------------|
-| ![Form](assets/form_example.png) | ![Result](assets/result_popup.png) |
+| ![Form](form_example.png) | ![Result](result_popup.png) |
 
 ---
 
