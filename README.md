@@ -16,7 +16,6 @@ A smart and user-friendly desktop application that helps patients understand the
   - Basilar-type migraine
   - Hemiplegic migraines
   - Typical aura (with or without migraine)
-  - ...and more!
 
 ---
 
